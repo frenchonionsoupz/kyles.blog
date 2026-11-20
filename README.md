@@ -1,2 +1,3 @@
 # kyles.blog
-this is my public home on the internet... my blog where i write about anything and everything... 
+
+Personal blog powered by Jekyll and GitHub Pages.

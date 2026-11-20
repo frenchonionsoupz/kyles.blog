@@ -1,0 +1,8 @@
+title: kyles.blog
+url: "https://kyles.blog"
+baseurl: ""
+permalink: /:title/
+markdown: kramdown
+timezone: America/New_York
+exclude:
+  - README.md
