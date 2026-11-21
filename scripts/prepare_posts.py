@@ -32,7 +32,7 @@ for file in files:
     if not m:
         continue
     info = yaml.safe_load(m.group(1)) or {}
-    manual = str(info.get("permalink") or info.get("slug") or "").strip("/")
+    manual = str(info.get("permalink") or "").strip("/")
     if manual:
         reserved.add(manual)
 
