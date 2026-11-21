@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Freelancing"
 title: "The Internet’s Real Value for Freelancers Is Connection, Not Automation"
 subtitle: "Why the internet seduces us toward scale and automation"
 description: "Why the internet seduces us toward scale and automation"
