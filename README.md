@@ -32,9 +32,7 @@ current short URLs.
 ## Automatic pages
 
 - `/` shows an automatically updated word count and published posts.
-- `/hyperlinks/` scans rendered published posts for hyperlinks and categorizes
-  them by source/domain. Links and source-post references update when the site
-  rebuilds.
+- `/hyperlinks/` lists every published article by category with a link to the post. Add `category: "Work & Life"` (or another category) to a post's YAML front matter for grouping; posts without a category appear under Other. The directory updates on every build.
 - `/feed.xml` is the RSS feed.
 
 ## Email subscriptions
