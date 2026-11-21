@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Freelancing"
 title: "7 Unexpected Benefits of Freelancing"
 subtitle: "Why I’m motivated to make this a lifelong career"
 description: "Why I’m motivated to make this a lifelong career"
