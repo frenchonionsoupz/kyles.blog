@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Work & Life"
 title: "Kobe or Cubicle"
 subtitle: "Why “Find Your Passion” Is Potentially Harmful Advice"
 description: "Why “Find Your Passion” Is Potentially Harmful Advice"
