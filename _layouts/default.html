@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fcfbf7">
   <title>{% if page.title %}{{ page.title | escape }} — {% endif %}kyles.blog</title>
-  <meta name="description" content="{% if page.description %}{{ page.description | escape }}{% else %}A personal blog about freelancing, working for myself, and what I learn along the way.{% endif %}">
+  <meta name="description" content="{% if page.description %}{{ page.description | escape }}{% else %}This little internet hellscape is the best online representation of my messy brain.{% endif %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,9 @@
 <body>
   <div class="wrap">
     <header>
+      <div class="top-links"><a href="https://kylewrites.com" target="_blank" rel="noopener noreferrer">visit website ↗</a></div>
       <a href="{{ '/' | relative_url }}" class="brand" aria-label="kyles.blog home">kyles<span class="accent">.blog</span></a>
+      <nav class="site-nav" aria-label="Site navigation"><a href="{{ '/hyperlinks/' | relative_url }}">Hyperlinks</a></nav>
     </header>
     <main>{{ content }}</main>
     {% unless page.url == "/" %}
