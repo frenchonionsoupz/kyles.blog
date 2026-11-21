@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Experiments"
 permalink: /show/
 title: "My New Show-and-Tell Experiment"
 description: "Turning the work I already do into things worth writing about, with a weekly ChatGPT recap."
