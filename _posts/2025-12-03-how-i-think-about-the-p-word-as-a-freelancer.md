@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Freelancing"
 title: "How To Develop Your Craft (Without “The Grind”)"
 subtitle: "The stupid-simple way to become an expert at something valuable"
 description: "The stupid-simple way to become an expert at something valuable"
