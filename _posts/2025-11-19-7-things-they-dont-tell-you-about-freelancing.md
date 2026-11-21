@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Freelancing"
 title: "7 Things They Don’t Tell You About Freelancing"
 subtitle: "Learn it now or life will teach you the hard way"
 description: "Learn it now or life will teach you the hard way"
