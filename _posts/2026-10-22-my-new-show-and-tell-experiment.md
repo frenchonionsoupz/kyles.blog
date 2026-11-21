@@ -4,6 +4,9 @@ permalink: /show/
 title: "My New Show-and-Tell Experiment"
 description: "Turning the work I already do into things worth writing about, with a weekly ChatGPT recap."
 date: 2026-10-22 10:25:00 -0400
+permalink: /show-and-tell/
+redirect_from:
+  - /my-new-show-and-tell-experiment/
 ---
 
 Not sure why I haven’t been doing this for the past 6+ years, but I’m gonna start now…
