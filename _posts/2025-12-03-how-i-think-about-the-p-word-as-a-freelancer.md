@@ -5,6 +5,9 @@ subtitle: "The stupid-simple way to become an expert at something valuable"
 description: "The stupid-simple way to become an expert at something valuable"
 image: /assets/images/practice.jpg
 date: 2025-12-03 09:00:00 -0500
+permalink: /p-word/
+redirect_from:
+  - /how-i-think-about-the-p-word-as-a-freelancer/
 ---
 
 For some reason, they made us think it needs to be hard:
