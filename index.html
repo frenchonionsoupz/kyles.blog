@@ -21,45 +21,67 @@ layout: default
   <p class="word-count"><strong>{{ total_words }}</strong> words published across <strong>{{ site.posts.size }}</strong> posts</p>
   <div class="post-heading">
     <h2 class="section-title">Posts</h2>
-    <label class="category-picker" for="category-filter">Category
-      <select id="category-filter" aria-label="Filter posts by category">
-        <option value="all">All</option>
-        {% assign categories_sorted = site.categories | sort %}
-        {% for group in categories_sorted %}
-          <option value="{{ group[0] | escape }}">{{ group[0] | escape }}</option>
-        {% endfor %}
-        {% assign other_posts = site.posts | where_exp: "post", "post.categories.size == 0" %}
-        {% if other_posts.size > 0 %}<option value="Other">Other</option>{% endif %}
-      </select>
-    </label>
+    <div class="post-filter">
+      <label class="visually-hidden" for="category-filter">Filter posts by category</label>
+      <div class="category-select-wrap">
+        <select id="category-filter" aria-label="Filter posts by category">
+          <option value="all">All categories</option>
+          {% assign categories_sorted = site.categories | sort %}
+          {% for group in categories_sorted %}
+            <option value="{{ group[0] | escape }}">{{ group[0] | escape }}</option>
+          {% endfor %}
+          {% assign uncategorized_count = 0 %}
+          {% for post in site.posts %}{% unless post.category %}{% assign uncategorized_count = uncategorized_count | plus: 1 %}{% endunless %}{% endfor %}
+          {% if uncategorized_count > 0 %}<option value="Other">Other</option>{% endif %}
+        </select>
+        <svg class="category-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+    </div>
   </div>
-  <ul class="post-list">
+  <ul class="post-list" id="filtered-post-list">
     {% for post in site.posts %}
-      <li data-categories="{% if post.categories.size == 0 %}Other{% else %}{{ post.categories | join: '|' | escape }}{% endif %}"><span class="date">{{ post.date | date: "%b %-d, %Y" }}</span><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+      <li data-category="{{ post.category | default: 'Other' | escape }}"><span class="date">{{ post.date | date: "%b %-d, %Y" }}</span><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
     {% else %}
       <li>Your first post is coming soon.</li>
     {% endfor %}
   </ul>
+  <p class="filter-results" id="filter-results" role="status" aria-live="polite" aria-atomic="true" hidden></p>
   <p class="small" id="no-category-posts" hidden>No posts in this category yet.</p>
 </section>
 <script>
-  (function () {
-    const filter = document.getElementById("category-filter");
-    const posts = Array.from(document.querySelectorAll(".post-list li[data-categories]"));
-    const empty = document.getElementById("no-category-posts");
-    if (!filter || !posts.length) return;
-    function update() {
-      const value = filter.value;
-      let shown = 0;
-      posts.forEach(post => {
-        const categories = (post.dataset.categories || "").split("|");
-        const visible = value === "all" || categories.includes(value);
-        post.hidden = !visible;
-        if (visible) shown++;
+(function () {
+  function initializePostFilter() {
+    const select = document.getElementById('category-filter');
+    const rows = Array.from(document.querySelectorAll('#filtered-post-list > li[data-category]'));
+    const results = document.getElementById('filter-results');
+    const empty = document.getElementById('no-category-posts');
+    if (!select || !rows.length) return;
+
+    // Keep the original chronological order. Only hide non-matching rows.
+    function render() {
+      const category = select.value;
+      let visibleCount = 0;
+      rows.forEach(function (row) {
+        const matches = category === 'all' || row.getAttribute('data-category') === category;
+        row.hidden = !matches;
+        row.style.display = matches ? '' : 'none';
+        if (matches) visibleCount += 1;
       });
-      empty.hidden = shown !== 0;
+      if (results) {
+        results.hidden = category === 'all';
+        results.textContent = visibleCount + (visibleCount === 1 ? ' post' : ' posts');
+      }
+      if (empty) empty.hidden = visibleCount > 0;
     }
-    filter.addEventListener("change", update);
-    update();
-  })();
+
+    select.addEventListener('change', render);
+    select.addEventListener('input', render);
+    render();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePostFilter, { once: true });
+  } else {
+    initializePostFilter();
+  }
+})();
 </script>
