@@ -1,8 +1,14 @@
 # Pages CMS configuration for kyles.blog
 # Content stays in this GitHub repository; Pages CMS is just the editing UI.
 media:
-  input: assets/images
-  output: /assets/images
+  - name: images
+    label: Blog images
+    input: assets/images
+    output: /assets/images
+
+settings:
+  content:
+    merge: true
 
 content:
   - name: posts
@@ -52,12 +58,12 @@ content:
         label: Cover image (optional)
         type: image
         options:
-          media: media
+          media: images
           rename: true
       - name: body
         label: Your writing
         type: rich-text
         options:
-          media: media
+          media: images
           rename: true
           switcher: true
