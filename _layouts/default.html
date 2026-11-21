@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/giraffe.svg' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
   <link rel="alternate" type="application/rss+xml" title="kyles.blog RSS" href="{{ '/feed.xml' | relative_url }}">
 </head>
@@ -17,7 +18,6 @@
     <header>
       <div class="top-links"><a href="https://kylewrites.com" target="_blank" rel="noopener noreferrer">visit website ↗</a></div>
       <a href="{{ '/' | relative_url }}" class="brand" aria-label="kyles.blog home">kyles<span class="accent">.blog</span></a>
-      <nav class="site-nav" aria-label="Site navigation"><a href="{{ '/hyperlinks/' | relative_url }}">Hyperlinks</a></nav>
     </header>
     <main>{{ content }}</main>
     {% unless page.url == "/" %}
@@ -29,7 +29,7 @@
       </div>
     </section>
     {% endunless %}
-    <footer>© {{ site.time | date: "%Y" }} kyles.blog · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></footer>
+    <footer>© {{ site.time | date: "%Y" }} kyles.blog · <a href="{{ '/hyperlinks/' | relative_url }}">Hyperlinks</a> · <a href="{{ '/feed.xml' | relative_url }}">RSS</a></footer>
   </div>
 </body>
 </html>
