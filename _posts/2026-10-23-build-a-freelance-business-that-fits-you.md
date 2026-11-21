@@ -3,6 +3,9 @@ layout: post
 title: "Build a Freelance Business That Fits You"
 description: "Treat your freelance business as an evolving experiment, not a machine to optimize toward someone else's ideal."
 date: 2026-10-23 13:55:00 -0400
+permalink: /evolution/
+redirect_from:
+  - /build-a-freelance-business-that-fits-you/
 ---
 
 I’ve been at this freelancing thing for 6+ years. I used to think I needed to figure out the “right” way to build a freelance business and then execute on it.
