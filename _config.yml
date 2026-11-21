@@ -6,3 +6,6 @@ markdown: kramdown
 timezone: America/New_York
 exclude:
   - README.md
+
+plugins:
+  - jekyll-redirect-from
