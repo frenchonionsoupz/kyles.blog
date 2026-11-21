@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Cartoon giraffe</title>
+  <rect width="64" height="64" rx="14" fill="#e7efe0"/>
+  <path d="M24 58V28c0-7 6-12 14-12s13 5 13 12v30Z" fill="#f5c65f" stroke="#62462e" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M28 14 26 5M43 14l2-9" stroke="#62462e" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="26" cy="5.5" r="4" fill="#b97742" stroke="#62462e" stroke-width="2"/>
+  <circle cx="45" cy="5.5" r="4" fill="#b97742" stroke="#62462e" stroke-width="2"/>
+  <path d="M25 20c-7-6-13-4-12 2 1 5 7 8 12 7M49 20c7-6 12-4 12 2-1 5-7 8-12 7" fill="#f5c65f" stroke="#62462e" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M25 24c1-8 6-11 12-11 9 0 14 6 14 15v12c0 8-6 13-14 13s-14-5-14-13V29c0-2 0-3 2-5Z" fill="#f5c65f" stroke="#62462e" stroke-width="2.5"/>
+  <path d="M27 29c1-2 4-3 6-1M42 28c3-1 5 0 6 2" stroke="#62462e" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  <circle cx="31" cy="32" r="2.2" fill="#32291e"/>
+  <circle cx="45" cy="32" r="2.2" fill="#32291e"/>
+  <path d="M27 39c4-5 16-5 20 0 3 5 0 10-9 10-8 0-14-3-11-10Z" fill="#f5df9e" stroke="#62462e" stroke-width="1.8"/>
+  <circle cx="33" cy="42" r="1.2" fill="#87512f"/>
+  <circle cx="43" cy="42" r="1.2" fill="#87512f"/>
+  <path d="M34 46q4 3 8 0" fill="none" stroke="#87512f" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M28 54q-2-5 4-6l6 5-2 5h-8Z" fill="#b97742"/>
+  <path d="M48 55q4-4 5 0v4h-6Z" fill="#b97742"/>
+</svg>
