@@ -1,0 +1,15 @@
+---
+layout: post
+title: "Ugly Photos Are More Beautiful"
+date: "2025-06-24T15:44:08+00:00"
+category: "Personal & Reflections"
+permalink: /ugly-photos/
+source_platform: Substack
+source_url: "https://kylejennings.substack.com/p/ugly-photos-are-more-beautiful"
+substack_post_id: "166736112"
+---
+
+<p>Not “more beautiful” in an objective way. Beauty is inherently subjective, after all.</p><p>That’s sorta my point.</p><p>Dad was suddenly taken from this Earth last July. And in these moments, we tend to open those old picture albums that have been gathering dust for too long.</p><p>The album that stands out to me is from my parents’ honeymoon. They went to Italy for a couple of weeks during the most scorching hot part of summer – presumably to save a couple of bucks (Dad was always sharper than his income would suggest. I think he lacked true money-motivation in the same way I do).</p><p>Lots of beautiful pictures of the architecture… <em>the sights</em>. The Trevi Fountain that they joked about jumping into (it was hot!). The Colosseum. And they took some pictures that make you stop and go “who knew Dad had such an eye for this type of thing?”</p><p>But who gives a single shit about <em>the sights.</em></p><p>Yes, there are hundreds of years of history here and whatnot… SURE. But if I wanted to see these things, I’m sure there are hundreds of published photo books that capture them better than my parents’ God-given abilities would ever allow (no offense, Dad).</p><p>It’s the photos of <em>them</em> that are my favorite. Even more specifically, it’s the photos of them that weren’t staged to be “perfect” that are my favorites.</p><p>The one Mom took of Dad when he wasn’t paying attention. Where his human-ness shines through in a way that doesn’t feel possible in photos that have the fingerprints of a controlling hand, looking to create some sort of ideal that never really existed.</p><p>The silly, stupid photos. The ones we wouldn’t put on our Instagram highlight reels because “my face looks stupid” or “my side fat is showing!”</p><p>So what the hell is my point?</p><p>It’s not that we should always take pictures with our ancestors’ interests in mind. But it’s to be intentional about our photo taking.</p><p>This piece isn’t for the people who take pictures in order to generate engagement on social media. That’s a different animal, and they’re well aware of their intentions.</p><p>This is for folks like me who, in the process of mocking people whose entire lives are on camera, forgot that pictures can actually be a great privilege.</p><p>This is a reminder that photos are an incredible lens into our incredible lives – lives we tend to forget are incredible through the daily monotony.</p><p>Most of us aren’t taking photos for the masses. We’re taking photos for ourselves.</p><p>And so this is your future self, being channeled through my fingers as I type this, with a plea:</p><p>More ugly photos, please.</p>
+
+<hr>
+<p><em>Originally published on <a href="https://kylejennings.substack.com/p/ugly-photos-are-more-beautiful">Substack</a>.</em></p>
