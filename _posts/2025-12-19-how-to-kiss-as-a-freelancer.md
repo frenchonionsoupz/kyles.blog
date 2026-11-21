@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Freelancing"
 title: "My Stupid-Simple Freelance Framework"
 subtitle: "The three fundamentals I’d focus on before worrying about growth, scale, or automation."
 description: "The three fundamentals I’d focus on before worrying about growth, scale, or automation."
