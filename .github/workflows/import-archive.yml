@@ -39,7 +39,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add _posts/ assets/imported/ import-report.md
+          git add -A -- _posts import-report.md
+          if [ -d assets/imported ]; then git add -A -- assets/imported; fi
           if ! git diff --cached --quiet; then
             git commit -m "Import Substack and Medium writing archive"
             git push
