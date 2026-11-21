@@ -5,6 +5,9 @@ subtitle: "Why I’m motivated to make this a lifelong career"
 description: "Why I’m motivated to make this a lifelong career"
 image: /assets/images/7-unexpected.jpg
 date: 2025-11-17 09:00:00 -0500
+permalink: /side-effects/
+redirect_from:
+  - /7-unexpected-benefits-of-freelancing/
 ---
 
 The expected benefits are why people start freelancing:
