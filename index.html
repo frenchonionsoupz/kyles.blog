@@ -13,6 +13,12 @@ layout: default
 </section>
 
 <section>
+  {% assign total_words = 0 %}
+  {% for post in site.posts %}
+    {% assign post_words = post.content | markdownify | strip_html | number_of_words %}
+    {% assign total_words = total_words | plus: post_words %}
+  {% endfor %}
+  <p class="word-count"><strong>{{ total_words }}</strong> words published across <strong>{{ site.posts.size }}</strong> posts</p>
   <h2 class="section-title">Posts</h2>
   <ul class="post-list">
     {% for post in site.posts %}
