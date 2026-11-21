@@ -1,0 +1,63 @@
+# Pages CMS configuration for kyles.blog
+# Content stays in this GitHub repository; Pages CMS is just the editing UI.
+media:
+  input: assets/images
+  output: /assets/images
+
+content:
+  - name: posts
+    label: Writing
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    exclude: [.gitkeep]
+    filename:
+      template: "{year}-{month}-{day}-{title}.md"
+      field: false
+    view:
+      primary: title
+      fields: [title, date, category]
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: layout
+        type: string
+        default: post
+        hidden: true
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Publication date
+        type: date
+        required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ssxxx"
+      - name: description
+        label: Subtitle / description
+        type: text
+      - name: category
+        label: Category
+        type: string
+        description: "Example: Culture & Ideas, Work & Life, Experiments, or Personal & Reflections."
+      - name: permalink
+        label: Custom URL (optional)
+        type: string
+        description: "Example: /my-essay/ — leave empty for the automatic short URL generator."
+      - name: image
+        label: Cover image (optional)
+        type: image
+        options:
+          media: media
+          rename: true
+      - name: body
+        label: Your writing
+        type: rich-text
+        options:
+          media: media
+          rename: true
+          switcher: true
