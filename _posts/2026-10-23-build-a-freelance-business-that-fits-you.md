@@ -1,5 +1,6 @@
 ---
 layout: post
+category: "Work & Life"
 title: "Build a Freelance Business That Fits You"
 description: "Treat your freelance business as an evolving experiment, not a machine to optimize toward someone else's ideal."
 date: 2026-10-23 13:55:00 -0400
