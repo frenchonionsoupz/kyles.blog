@@ -1,0 +1,87 @@
+---
+layout: default
+title: Hyperlinks
+description: Every link I've referenced in my writing, automatically collected and organized.
+permalink: /hyperlinks/
+---
+<section class="links-index">
+  <a class="back-link" href="{{ '/' | relative_url }}">← All posts</a>
+  <h1 class="article-title">Hyperlinks</h1>
+  <p>Everything I've linked to in my writing, automatically collected and loosely organized. New links appear as new posts are published.</p>
+  <p id="link-total" class="word-count">Gathering links…</p>
+  <div id="link-categories"></div>
+</section>
+
+<div id="link-sources" hidden aria-hidden="true">
+{% for post in site.posts %}
+  <template data-title="{{ post.title | escape }}" data-url="{{ post.url | relative_url }}">{{ post.content | markdownify }}</template>
+{% endfor %}
+</div>
+<script>
+(function () {
+  const base = window.location.origin;
+  const groups = ["Writing & Research", "Books & Reading", "Videos & Podcasts", "Tools & Projects", "Social & Communities", "Other Websites", "My Websites"];
+  const links = new Map();
+  function category(u, label) {
+    const host = u.hostname.toLowerCase().replace(/^www\./, "");
+    const path = u.pathname.toLowerCase();
+    if (host === "kyles.blog" || host === "kylewrites.com" || host === "learningfreelance.com") return "My Websites";
+    if (/youtube\.com|youtu\.be|vimeo\.com|spotify\.com|podcasts\.apple\.com|soundcloud\.com/.test(host)) return "Videos & Podcasts";
+    if (/reddit\.com|linkedin\.com|x\.com|twitter\.com|instagram\.com|threads\.net|facebook\.com|bsky\.app/.test(host)) return "Social & Communities";
+    if (/amazon\.|goodreads\.com|books\.google\.|openlibrary\.org|gutenberg\.org|archive\.org|bookshop\.org/.test(host) || /\b(book|reading list|novel)\b/i.test(label)) return "Books & Reading";
+    if (/github\.com|docs\.google\.com|notion\.so|figma\.com|airtable\.com|chatgpt\.com|kit\.com|substack\.com/.test(host) && !/\/p\//.test(path)) return "Tools & Projects";
+    if (/medium\.com|substack\.com|wikipedia\.org|theatlantic\.com|nytimes\.com|theguardian\.com|aeon\.co|\.edu$|arxiv\.org/.test(host) || /article|essay|study|paper|research/i.test(label)) return "Writing & Research";
+    return "Other Websites";
+  }
+  document.querySelectorAll("#link-sources template").forEach(t => {
+    const post = { title: t.dataset.title, url: t.dataset.url };
+    t.content.querySelectorAll("a[href]").forEach(a => {
+      const raw = a.getAttribute("href");
+      if (!raw || /^(mailto:|tel:|javascript:|#)/i.test(raw)) return;
+      let u; try { u = new URL(raw, base); } catch { return; }
+      if (!/^https?:$/.test(u.protocol)) return;
+      u.hash = "";
+      const normalized = u.href.replace(/\/$/, "");
+      const name = a.textContent.trim().replace(/\s+/g, " ") || u.hostname;
+      if (!links.has(normalized)) links.set(normalized, { url: u.href, name, group: category(u, name), posts: new Map() });
+      const entry = links.get(normalized);
+      if (name.length > entry.name.length && entry.name === u.hostname) entry.name = name;
+      entry.posts.set(post.url, post);
+    });
+  });
+  const target = document.getElementById("link-categories");
+  const entries = Array.from(links.values());
+  document.getElementById("link-total").textContent = entries.length.toLocaleString() + " unique links from " + document.querySelectorAll("#link-sources template").length + " posts";
+  groups.forEach(group => {
+    const items = entries.filter(e => e.group === group).sort((a,b) => a.name.localeCompare(b.name));
+    if (!items.length) return;
+    const section = document.createElement("section");
+    section.className = "link-group";
+    const h = document.createElement("h2");
+    h.className = "section-title";
+    h.textContent = group + " (" + items.length + ")";
+    section.appendChild(h);
+    const ul = document.createElement("ul");
+    ul.className = "hyperlink-list";
+    items.forEach(entry => {
+      const li = document.createElement("li");
+      const anchor = document.createElement("a");
+      anchor.href = entry.url; anchor.target = "_blank"; anchor.rel = "noopener noreferrer";
+      anchor.textContent = entry.name; li.appendChild(anchor);
+      const domain = document.createElement("small");
+      domain.textContent = new URL(entry.url).hostname.replace(/^www\./,"");
+      li.appendChild(domain);
+      const refs = document.createElement("div"); refs.className = "link-mentions";
+      refs.append("Mentioned in: ");
+      Array.from(entry.posts.values()).forEach((post,i) => {
+        if (i) refs.append(", ");
+        const a = document.createElement("a"); a.href = post.url; a.textContent = post.title;
+        refs.appendChild(a);
+      });
+      li.appendChild(refs); ul.appendChild(li);
+    });
+    section.appendChild(ul); target.appendChild(section);
+  });
+  if (!entries.length) target.textContent = "No links found in the published posts yet.";
+})();
+</script>
