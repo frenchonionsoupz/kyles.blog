@@ -5,6 +5,9 @@ subtitle: "Why the internet seduces us toward scale and automation"
 description: "Why the internet seduces us toward scale and automation"
 image: /assets/images/seductress.jpg
 date: 2026-02-17 09:00:00 -0500
+permalink: /seductress/
+redirect_from:
+  - /beware-the-freelancer-seductress/
 ---
 
 Today's online ecosystem structurally seduces us toward scale and
