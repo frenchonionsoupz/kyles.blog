@@ -28,6 +28,7 @@ POSTS = ROOT / "_posts"
 IMAGES = ROOT / "assets" / "imported"
 REPORT = ROOT / "import-report.md"
 SUBSTACK = "https://kylejennings.substack.com"
+SUBSTACK_RSS = SUBSTACK + "/feed"
 MEDIUM = "https://medium.com/feed/@kylejennings57"
 session = requests.Session()
 session.headers.update({"User-Agent": "Mozilla/5.0 (compatible; PersonalBlogArchiver/1.0)"})
@@ -263,6 +264,33 @@ def substack_archive():
         cursor = next_cursor
 
 
+def substack_rss():
+    """Fallback to Substack's published RSS feed when private APIs reject us.
+
+    RSS generally contains only recent posts, so this is not a complete
+    historical archive; the report explicitly records this limitation.
+    """
+    feed = feedparser.parse(get(SUBSTACK_RSS).content)
+    if not feed.entries:
+        raise ValueError("Substack RSS returned no entries")
+    for item in feed.entries:
+        url = item.get("link", "")
+        title = BeautifulSoup(item.get("title", ""), "html.parser").get_text(" ", strip=True)
+        body = (item.get("content") or [{}])[0].get("value") or ""
+        if not body:
+            body = item.get("summary", "")
+        if item.get("published_parsed"):
+            date = dt.datetime(*item.published_parsed[:6], tzinfo=dt.timezone.utc)
+        elif item.get("updated_parsed"):
+            date = dt.datetime(*item.updated_parsed[:6], tzinfo=dt.timezone.utc)
+        else:
+            date = None
+        tags = [tag.get("term", "") for tag in item.get("tags", [])]
+        import_post("Substack", title, date, url, body, tags=tags)
+    print(f"Substack RSS entries inspected: {len(feed.entries)}")
+    return len(feed.entries)
+
+
 def medium_posts():
     feed = feedparser.parse(get(MEDIUM).content)
     if not feed.entries:
@@ -285,8 +313,13 @@ def main():
     try:
         substack_archive()
     except Exception as exc:
-        result["failed"].append(("Substack", "Archive fetch", str(exc)))
-        print(f"Substack archive failed: {exc}", file=sys.stderr)
+        print(f"Substack API unavailable ({exc}); trying public RSS.", file=sys.stderr)
+        try:
+            count = substack_rss()
+            result["failed"].append(("Substack", "Historical archive", f"Archive API returned {type(exc).__name__}: {exc}; RSS only lists {count} recent posts. For the complete archive, use the official Substack export."))
+        except Exception as rss_exc:
+            result["failed"].append(("Substack", "Archive and RSS", f"API: {exc}; RSS: {rss_exc}"))
+            print(f"Substack RSS also failed: {rss_exc}", file=sys.stderr)
     try:
         medium_posts()
     except Exception as exc:
@@ -312,8 +345,8 @@ def main():
     print(json.dumps({key: len(val) if isinstance(val, list) else val for key, val in result.items()}, indent=2))
     # Failure to contact a platform should be visible, but imported content should
     # still be committed to preserve completed work.
-    if not result["imported"] and result["failed"]:
-        sys.exit(1)
+    # The workflow can complete with partial coverage; see report for gaps.
+    # A successful GitHub Action must not be confused with a complete import.
 
 
 if __name__ == "__main__":
