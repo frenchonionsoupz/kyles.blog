@@ -5,6 +5,9 @@ subtitle: "Why “Find Your Passion” Is Potentially Harmful Advice"
 description: "Why “Find Your Passion” Is Potentially Harmful Advice"
 image: /assets/images/kobe-or-cubicle.jpg
 date: 2025-12-08 09:00:00 -0500
+permalink: /kobe/
+redirect_from:
+  - /kobe-or-cubicle/
 ---
 
 I was reading a lot of classic rock biographies around the same time I
