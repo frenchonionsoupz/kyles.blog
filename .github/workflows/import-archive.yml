@@ -1,0 +1,48 @@
+name: Import writing archives
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/import_archive.py'
+      - '.github/workflows/import-archive.yml'
+  workflow_dispatch:
+  schedule:
+    - cron: '17 8 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: writing-archive-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out blog repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install importer libraries
+        run: python -m pip install requests beautifulsoup4 markdownify feedparser PyYAML
+      - name: Import all publicly available posts and images
+        id: import
+        continue-on-error: true
+        run: python scripts/import_archive.py
+      - name: Commit imported posts, images and report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts/ assets/imported/ import-report.md
+          if ! git diff --cached --quiet; then
+            git commit -m "Import Substack and Medium writing archive"
+            git push
+          else
+            echo "No new archive changes."
+          fi
