@@ -5,6 +5,9 @@ subtitle: "The three fundamentals I’d focus on before worrying about growth, s
 description: "The three fundamentals I’d focus on before worrying about growth, scale, or automation."
 image: /assets/images/how-to-kiss.jpg
 date: 2025-12-19 09:00:00 -0500
+permalink: /kiss/
+redirect_from:
+  - /how-to-kiss-as-a-freelancer/
 ---
 
 ![Article image](https://substack-post-media.s3.amazonaws.com/public/images/8ffa0c93-8f6f-4b93-93af-13792e4783af_1536x1024.png)
