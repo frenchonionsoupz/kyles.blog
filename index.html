@@ -19,12 +19,47 @@ layout: default
     {% assign total_words = total_words | plus: post_words %}
   {% endfor %}
   <p class="word-count"><strong>{{ total_words }}</strong> words published across <strong>{{ site.posts.size }}</strong> posts</p>
-  <h2 class="section-title">Posts</h2>
+  <div class="post-heading">
+    <h2 class="section-title">Posts</h2>
+    <label class="category-picker" for="category-filter">Category
+      <select id="category-filter" aria-label="Filter posts by category">
+        <option value="all">All</option>
+        {% assign categories_sorted = site.categories | sort %}
+        {% for group in categories_sorted %}
+          <option value="{{ group[0] | escape }}">{{ group[0] | escape }}</option>
+        {% endfor %}
+        {% assign other_posts = site.posts | where_exp: "post", "post.categories.size == 0" %}
+        {% if other_posts.size > 0 %}<option value="Other">Other</option>{% endif %}
+      </select>
+    </label>
+  </div>
   <ul class="post-list">
     {% for post in site.posts %}
-      <li><span class="date">{{ post.date | date: "%b %-d, %Y" }}</span><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
+      <li data-categories="{% if post.categories.size == 0 %}Other{% else %}{{ post.categories | join: '|' | escape }}{% endif %}"><span class="date">{{ post.date | date: "%b %-d, %Y" }}</span><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></li>
     {% else %}
       <li>Your first post is coming soon.</li>
     {% endfor %}
   </ul>
+  <p class="small" id="no-category-posts" hidden>No posts in this category yet.</p>
 </section>
+<script>
+  (function () {
+    const filter = document.getElementById("category-filter");
+    const posts = Array.from(document.querySelectorAll(".post-list li[data-categories]"));
+    const empty = document.getElementById("no-category-posts");
+    if (!filter || !posts.length) return;
+    function update() {
+      const value = filter.value;
+      let shown = 0;
+      posts.forEach(post => {
+        const categories = (post.dataset.categories || "").split("|");
+        const visible = value === "all" || categories.includes(value);
+        post.hidden = !visible;
+        if (visible) shown++;
+      });
+      empty.hidden = shown !== 0;
+    }
+    filter.addEventListener("change", update);
+    update();
+  })();
+</script>
